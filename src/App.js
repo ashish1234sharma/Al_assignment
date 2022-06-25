@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { EntryForm } from './components/EntryForm';
+import {  HomePage } from './components/home';
+import { Login } from './components/Login';
+import { Navbar } from './components/Navbar';
+import { Register } from './components/Register';
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import { AdminPage } from './components/AdminPage';
+import {PrivateRoute} from './components/PrivateRoute'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+     <BrowserRouter>
+     <Navbar />
+     <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/Admission" element={<PrivateRoute Component={EntryForm} />} />
+      <Route path="/Register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/admin" element={<AdminPage />} />
+      
+     </Routes>
+     
+     </BrowserRouter>
+     {/* <AdminPage /> */}
+   
     </div>
   );
 }
